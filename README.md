@@ -2,6 +2,8 @@
 ## Códigos originais do artigo disponível em https://alexandrebbarbosa.wordpress.com/2016/01/16/php-e-mysql-crud-create-read-update-delete/
 <br>
 
+### Aluna: Patrícia Reis e Geovanna Alcântara
+
 # **Atividades**
 
 ### **O que é uma "interface"?**
