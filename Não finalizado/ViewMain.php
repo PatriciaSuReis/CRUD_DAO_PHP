@@ -28,7 +28,7 @@ spl_autoload_register("my_autoload");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contados</title>
 
-    <!--<link rel="stylesheet" href="stylemain.css">-->
+    <link rel="stylesheet" href="styleMain.css">
 </head>
 <body>
     <div class="container">

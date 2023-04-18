@@ -12,7 +12,7 @@
     <div class="main-login">
         <div class="left-login">
             <h1>Faça o login <br> Para acessar seus contados</h1>
-            <img src="dinosaurs-animate.svg" class="left-login-image"alt="dois dinosauro em uma ilha animação">
+            <img src="dinossauro.svg" class="left-login-image"alt="dois dinosauro em uma ilha animação">
         </div>
         <div class="right-login">
             <div class="card-login">
