@@ -35,6 +35,7 @@ class DaoContato implements iDaoModeCrud {
 
          if($operacao->execute()){
                if($operacao->rowCount() > 0) {
+                  //PDO::lastInsertId — Retorna o ID da última linha inserida ou valor de sequência
                   $objeto->setID($this->instanciaConexaoPdoAtiva->lastInsertId());
                   return true;
             } else {
