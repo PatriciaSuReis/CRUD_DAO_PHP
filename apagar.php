@@ -23,6 +23,7 @@ if (isset($_GET['id'])) {
     // Redirecionar para a página principal com a mensagem
     header("Location: teste copy.php?mensagem=" . urlencode($mensagem));
     exit();
+
 }
 
 ?>

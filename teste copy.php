@@ -10,21 +10,19 @@
 <body>
 
    <div class="formulario">
-      <h1>Contado</h1>
+      <h1>Contato</h1>
       <form action="" method="POST">
             <label for="nome">Nome</label>
-            <input type="text" name="nome" placeholder="Digite o Nome"> <br>
+            <input type="text" name="nome" placeholder="Digite o Nome" required> <br>
             <label for="email">Email</label>
-            <input type="emai" name="email" placeholder="Digite o Email"> <br>
+            <input type="emai" name="email" placeholder="Digite o Email" required> <br>
             <label for="telefone">Telefone</label>
-            <input type="number" name="telefone" placeholder="Digite o Telefone"> <br>
+            <input type="number" name="telefone" placeholder="Digite o Telefone" required> <br>
 
             <input type="submit" name="enviar" value="Enviar">
       </form>
    </div>
    <br>
-</body>
-</html>
 
 <?php
 
@@ -34,13 +32,10 @@ include_once "Contato.class.php";
 include_once "PdoConexao.class.php";
 include_once "DaoContato.class.php";
 
-$contato1 = new Contato( "Alexandre Barbosa", "teste@teste.com.br", "11999999999");
-
-// Então primeiro criamos um novo objeto DAO
+// Criamos um novo objeto DAO
 $PersitenciaContato1 = new DaoContato();
 
 // * Pegar dados do formulario e mandar para banco de dados
-
 if (isset($_POST['enviar'])) {
    $nome = $_POST["nome"];
    $email = $_POST["email"];
@@ -68,6 +63,17 @@ if (isset($_POST['enviar'])) {
       $mensagem = $_GET['mensagem'];
       echo "<p>$mensagem</p>";
    } 
+
+   echo " <thead>
+               <tr>
+               <th>ID</th>
+               <th>Nome</th>
+               <th>Email</th>
+               <th>Telefone</th>
+               <th>Ações</th>
+               </tr>
+            </thead>";
+   echo "<tboby>";
    foreach($contato as $linha){
       echo '<tr>';
       echo "<td>". $linha['ID'] ."</td>";
@@ -75,13 +81,26 @@ if (isset($_POST['enviar'])) {
       echo "<td>". $linha['EMAIL']." </td>";
       echo "<td>". $linha['TELEFONE']." </td>";
       echo "<td> <a href=\"apagar.php?id=".$linha['ID']."\">Apagar</a> </td>";
+      // editar não esta pronto
+      echo "<td> <a href=\"editar!.php?id=".$linha['ID']."\">Editar</a> </td>";
       
       echo '</tr>';
    }
+   echo "</tboby>";
    echo '</table>';
-
    die();
+
+   // Verificar se a variável "editar" está definida
+if (isset($_GET['editar'])) {
+   // Incluir o arquivo "editar_contato.php"
+   include_once 'editar.php';
+ }
 
    // TODO: FAZER A EDIÇÃO DOS DADOS E ORGANIZAR O CODIGO
 
 ?>
+
+
+</body>
+</html>
+
