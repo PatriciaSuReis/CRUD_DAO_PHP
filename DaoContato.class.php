@@ -50,6 +50,24 @@ class DaoContato implements iDaoModeCrud {
    }
 
    /**
+    *
+    * readAll: Retorna um objeto refletindo um contato
+    *
+    * @return vetor
+    */
+   public function readAll() {
+      $sqlStmt = "SELECT * from {$this->tabela} ORDER BY NOME;" ;
+      try {
+         $operacao = $this->instanciaConexaoPdoAtiva->prepare($sqlStmt);
+         $operacao->execute();
+         $linhas = $operacao->fetchAll(PDO::FETCH_ASSOC);
+         return $linhas;
+      } catch( PDOException $excecao ){
+         echo $excecao->getMessage();
+      }
+   }
+
+   /**
    *
    * read: Retorna um objeto refletindo um contato
    *
@@ -65,12 +83,19 @@ class DaoContato implements iDaoModeCrud {
          $operacao->bindValue(":id", $id, PDO::PARAM_INT);
          $operacao->execute();
          $getRow = $operacao->fetch(PDO::FETCH_OBJ);
-         $nome = $getRow->NOME;
-         $email = $getRow->EMAIL;
-         $telefone = $getRow->TELEFONE;
-         $objeto = new Contato( $nome, $email, $telefone );
-         $objeto->setId($id);
-         return $objeto;
+
+         if($getRow) { 
+            //A consulta retornou um obj
+            $nome = $getRow->NOME;
+            $email = $getRow->EMAIL;
+            $telefone = $getRow->TELEFONE;
+            $objeto = new Contato( $nome, $email, $telefone );
+            $objeto->setId($id);
+            return $objeto;
+         } else {
+            //A consulta não retornou resultados
+            return null;
+         }
       } catch( PDOException $excecao ){
          echo $excecao->getMessage();
       }

@@ -25,6 +25,24 @@ $contato1 = new Contato( "Alexandre Barbosa", "teste@teste.com.br", "11999999999
 // Então primeiro criamos um novo objeto DAO
 $PersitenciaContato1 = new DaoContato();
 
+$contatos = $PersitenciaContato1->readAll();
+/*echo '<table border="1">';
+foreach($contatos as $linha){
+   echo '<tr>';
+   echo "<td>". $linha['ID'] ."</td>";
+   echo "<td>". $linha['NOME']." </td>";
+   echo "<td>". $linha['EMAIL']." </td>";
+   echo "<td>". $linha['TELEFONE']." </td>";
+   echo "<td><a href=\"apagar.php?id=". $linha['ID']."\">Apagar</a> </td>";
+   
+   
+   echo '</tr>';
+}
+echo '</table>';
+
+
+die();*/
+
 // Para persistencia de dados do objeto contato, usamos o método create passando o nosso 
 // objeto de contato como parâmetro
 if($PersitenciaContato1->create($contato1)){
@@ -37,11 +55,11 @@ if($PersitenciaContato1->create($contato1)){
    sem precisar inserir mais códigos
 */
 
-var_dump($PersitenciaContato1->read(1));
+var_dump($PersitenciaContato1->read(2));
 echo "<hr>";
 
 //Note que poderíamos criar um novo objeto com os dados de contato apenas desta forma:
-$contato2 = $PersitenciaContato1->read(1);
+$contato2 = $PersitenciaContato1->read(2);
 
 // O número 1, indica o ID do registro no banco de dados.
 //Agora para atualizar os dados, primeiro "setamos" os novos valores no objeto de contato
@@ -55,11 +73,11 @@ if($PersitenciaContato1->update($contato1)){
 }
 
 //Vamos conferir a atualização realizada com o método read do nosso DAO
-var_dump($PersitenciaContato1->read(1));
+var_dump($PersitenciaContato1->read(2));
 echo "<hr>";
 
 // E para excluirmos? usamos o método delete do nosso DAO, informando o ID como parâmetro
-if($PersitenciaContato1->delete(1)){
+if($PersitenciaContato1->delete(2)){
     echo '<p>Excluído do banco com Êxito</p>';
 }
 
